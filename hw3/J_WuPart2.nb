@@ -1,0 +1,675 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27488,        667]
+NotebookOptionsPosition[     26711,        638]
+NotebookOutlinePosition[     27056,        653]
+CellTagsIndexPosition[     27013,        650]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"quadraticBez", "[", 
+    RowBox[{"b_", ",", "t_"}], "]"}], ":=", 
+   RowBox[{"Sum", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"b", "[", 
+       RowBox[{"[", 
+        RowBox[{"i", "+", "1"}], "]"}], "]"}], "*", 
+      RowBox[{"BernsteinBasis", "[", 
+       RowBox[{"2", ",", "i", ",", "t"}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0", ",", "2"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ratquadraticBez", "[", 
+    RowBox[{"b_", ",", "t_"}], "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"val", " ", "=", " ", 
+      RowBox[{"Sum", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"b", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", "+", "1"}], "]"}], "]"}], "*", 
+         RowBox[{"BernsteinBasis", "[", 
+          RowBox[{"2", ",", "i", ",", "t"}], "]"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "0", ",", "2"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"val", "=", 
+      RowBox[{"val", "/", 
+       RowBox[{"val", "[", 
+        RowBox[{"[", "3", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"val", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", 
+        RowBox[{"val", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "}"}], "]"}]}], 
+    "\[IndentingNewLine]", ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"b2D", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "1", ",", "1"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wts", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{"1.0", ",", " ", "2.0", ",", " ", "1.0"}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"p", "=", 
+    RowBox[{"{", 
+     RowBox[{"0.8", ",", "0.8", ",", "1"}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+    "\"\<After evaluate the notebook, the output shows something wrong. But \
+just move the locator, the error will not show again. When the locator moves \
+to the top left part and the bottom rigth part, error message will be shown \
+below. And if you can move the locator exactly on the line, it will show that \
+denominator is zero. I ask you whether the condition is correct if the p in \
+the top right part after class. I think even though it can get a solution of \
+w1 but the condition is not reasonable.\>\"", ",", "18", ",", "Red"}], "]"}], 
+   "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"p", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{"cp", ",", 
+       RowBox[{"{", "1.0", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"v0", "=", 
+     RowBox[{
+      RowBox[{"b2D", "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "-", 
+      RowBox[{"b2D", "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"v1", "=", 
+     RowBox[{
+      RowBox[{"b2D", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], "-", 
+      RowBox[{"b2D", "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"v2", "=", 
+     RowBox[{"p", "-", 
+      RowBox[{"b2D", "[", 
+       RowBox[{"[", "3", "]"}], "]"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"d00", "=", 
+     RowBox[{"Dot", "[", 
+      RowBox[{"v0", ",", "v0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"d01", "=", 
+     RowBox[{"Dot", "[", 
+      RowBox[{"v0", ",", "v1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"d11", "=", 
+     RowBox[{"Dot", "[", 
+      RowBox[{"v1", ",", "v1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"d20", "=", 
+     RowBox[{"Dot", "[", 
+      RowBox[{"v2", ",", "v0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"d21", "=", 
+     RowBox[{"Dot", "[", 
+      RowBox[{"v2", ",", "v1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"denom", "=", 
+     RowBox[{
+      RowBox[{"d00", "*", "d11"}], "-", 
+      RowBox[{"d01", "*", "d01"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"\[Tau]0", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"d11", "*", "d20"}], "-", 
+        RowBox[{"d01", "*", "d21"}]}], ")"}], "/", "denom"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"\[Tau]1", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"d00", "*", "d21"}], "-", 
+        RowBox[{"d01", "*", "d20"}]}], ")"}], "/", "denom"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"\[Tau]2", "=", 
+     RowBox[{"1.0", "-", "\[Tau]0", "-", "\[Tau]1"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"\[Tau]0", "<", "0"}], "&&", 
+         RowBox[{"\[Tau]2", ">", "0"}]}], ")"}], "||", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"\[Tau]0", ">", "0"}], "&&", 
+         RowBox[{"\[Tau]2", "<", "0"}]}], ")"}]}], ",", 
+      RowBox[{"Print", "[", "\"\<Dominator is negative\>\"", "]"}], ",", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"\[Tau]0", "\[Equal]", "0"}], "||", 
+         RowBox[{"\[Tau]2", "\[Equal]", "0"}]}], ",", 
+        RowBox[{"Print", "[", "\"\<Dominator is zero\>\"", "]"}]}], "]"}]}], 
+     " ", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"wts", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], "=", 
+     RowBox[{"\[Tau]1", "/", 
+      RowBox[{"(", 
+       RowBox[{"2", "*", 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"\[Tau]0", "*", "\[Tau]2"}], "]"}]}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"b3D", "=", 
+     RowBox[{"b2D", " ", "=", " ", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0", ",", "1"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1", ",", "1"}], "}"}]}], "}"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"b2d", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Do", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"b3D", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+       RowBox[{
+        RowBox[{"b2D", "[", 
+         RowBox[{"[", "i", "]"}], "]"}], "*", 
+        RowBox[{"wts", "[", 
+         RowBox[{"[", "i", "]"}], "]"}]}]}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "3"}], "}"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"wtpts1", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"b2D", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], "+", 
+        RowBox[{
+         RowBox[{"wts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "*", 
+         RowBox[{"b2D", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}]}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"1.0", "+", 
+        RowBox[{"wts", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"wtpts2", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"b2D", "[", 
+         RowBox[{"[", "3", "]"}], "]"}], "+", 
+        RowBox[{
+         RowBox[{"wts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], "*", 
+         RowBox[{"b2D", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}]}], ")"}], "/", 
+      RowBox[{"(", 
+       RowBox[{"1.0", "+", 
+        RowBox[{"wts", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"wtpts12d", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"wtpts1", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", 
+       RowBox[{"wtpts1", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"wtpts22d", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"wtpts2", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], ",", 
+       RowBox[{"wtpts2", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], "}"}]}], ";", "\[IndentingNewLine]",
+     "\[IndentingNewLine]", 
+    RowBox[{"l1", "=", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed", ",", 
+        RowBox[{"InfiniteLine", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"b2d", "[", 
+            RowBox[{"[", "1", "]"}], "]"}], ",", 
+           RowBox[{"b2d", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], "}"}], "]"}]}], "}"}], "]"}]}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"l2", "=", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "Dashed", ",", 
+        RowBox[{"InfiniteLine", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"b2d", "[", 
+            RowBox[{"[", "2", "]"}], "]"}], ",", 
+           RowBox[{"b2d", "[", 
+            RowBox[{"[", "3", "]"}], "]"}]}], "}"}], "]"}]}], "}"}], "]"}]}], 
+    ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"curve2D", " ", "=", " ", 
+     RowBox[{"ParametricPlot", "[", 
+      RowBox[{
+       RowBox[{"ratquadraticBez", "[", 
+        RowBox[{"b3D", ",", "t"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", " ", "Green"}], "}"}]}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"polygon2D", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", 
+        RowBox[{"Line", "[", "b2d", "]"}]}], "}"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"points2D", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{"Cyan", ",", 
+        RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+        RowBox[{"Point", "[", "b2d", "]"}]}], "}"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"wtpts", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+        RowBox[{"Point", "[", 
+         RowBox[{"{", 
+          RowBox[{"wtpts12d", ",", "wtpts22d"}], "}"}], "]"}]}], "}"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"wtpntLine", " ", "=", " ", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{"{", 
+       RowBox[{"Thick", ",", "Cyan", ",", 
+        RowBox[{"Line", "[", 
+         RowBox[{"{", 
+          RowBox[{"wtpts12d", ",", " ", "wtpts22d"}], "}"}], "]"}]}], "}"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"curve3D", " ", "=", " ", 
+       RowBox[{"ParametricPlot3D", "[", 
+        RowBox[{
+         RowBox[{"quadraticBez", "[", 
+          RowBox[{"b3D", ",", "t"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", " ", "Red"}], "}"}]}], ",", 
+         RowBox[{"Axes", "\[Rule]", "True"}], ",", 
+         RowBox[{"AxesEdge", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1"}], ",", 
+              RowBox[{"-", "1"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1"}], ",", 
+              RowBox[{"-", "1"}]}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"-", "1"}], ",", 
+              RowBox[{"-", "1"}]}], "}"}]}], "}"}]}], ",", " ", 
+         RowBox[{"Boxed", "\[Rule]", "False"}]}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"polygon3D", "=", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"Line", "[", "b3D", "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"points3D", " ", "=", " ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+          RowBox[{"Point", "[", "b3D", "]"}]}], "}"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"t", "=", 
+        RowBox[{"0.5", " ", "line", " ", "thru", " ", "origin"}]}], " ", 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"line2origin", " ", "=", " ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", 
+         RowBox[{"Thick", ",", "Magenta", ",", 
+          RowBox[{"Line", "[", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"ratquadraticBez", "[", 
+              RowBox[{"b3D", ",", "0.5"}], "]"}], ",", 
+             RowBox[{"quadraticBez", "[", 
+              RowBox[{"b3D", ",", "0.5"}], "]"}], ",", " ", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}], "]"}]}], 
+         "}"}], "]"}]}], ";", "\[IndentingNewLine]", " ", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"pointOrigin", " ", "=", " ", 
+       RowBox[{"Graphics3D", "[", 
+        RowBox[{"{", 
+         RowBox[{"Black", ",", 
+          RowBox[{"PointSize", "[", "0.05", "]"}], ",", 
+          RowBox[{"Point", "[", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0", ",", "0"}], "}"}], "]"}]}], "}"}], "]"}]}],
+       ";"}], "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "curve2D", ",", " ", "polygon2D", ",", " ", "points2D", ",", "wtpts", 
+        ",", "wtpntLine", ",", "l1", ",", "l2"}], "}"}], ",", " ", 
+      RowBox[{"PlotRange", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "1.5"}], ",", "1.5"}], "}"}]}], "}"}]}]}], "]"}]}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{"cp", ",", "Locator"}], "}"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7001734497626057`*^9, 3.700173464492182*^9}, {
+   3.700173614822977*^9, 3.70017366368676*^9}, {3.7001739000226145`*^9, 
+   3.7001739200956264`*^9}, {3.700174092775628*^9, 3.7001741055409956`*^9}, 
+   3.7001742374792953`*^9, {3.700174284500594*^9, 3.700174313799531*^9}, {
+   3.7001743551856813`*^9, 3.7001746682139025`*^9}, {3.70017470087779*^9, 
+   3.700174795809819*^9}, {3.7001749303049335`*^9, 3.70017494846665*^9}, {
+   3.700174978472501*^9, 3.700174982784178*^9}, {3.7001750486639175`*^9, 
+   3.7001750617769938`*^9}, {3.7001815704473486`*^9, 3.700181573516958*^9}, {
+   3.700181652333547*^9, 3.7001816963885136`*^9}, {3.700181766630876*^9, 
+   3.700181789547419*^9}, {3.700181824792818*^9, 3.70018186349183*^9}, {
+   3.700253582479684*^9, 3.70025358853916*^9}, {3.700253645075206*^9, 
+   3.7002537038231816`*^9}, {3.7002537574125986`*^9, 
+   3.7002538046977453`*^9}, {3.700253846305455*^9, 3.7002538500449057`*^9}, {
+   3.7002543187102194`*^9, 3.7002543603570085`*^9}, {3.700254590986416*^9, 
+   3.700254610051011*^9}, {3.700330841273675*^9, 3.700330917079775*^9}, {
+   3.700405220944435*^9, 3.7004053708167105`*^9}, {3.70041018439328*^9, 
+   3.70041021521122*^9}, {3.70041031614396*^9, 3.700410346115077*^9}, {
+   3.700410412355858*^9, 3.700410415494833*^9}, {3.7004135106110306`*^9, 
+   3.7004135350934877`*^9}, {3.7004136085942373`*^9, 3.70041361854768*^9}, 
+   3.7004136712679896`*^9, {3.700414053279885*^9, 3.7004141484896946`*^9}, {
+   3.7004142480426397`*^9, 3.7004142779016795`*^9}, {3.700414476971032*^9, 
+   3.7004144796284127`*^9}, {3.7004152306531105`*^9, 
+   3.7004152970958242`*^9}, {3.700416022823969*^9, 3.7004160372398596`*^9}, {
+   3.700416071130588*^9, 3.7004161412240105`*^9}, {3.7004161719588017`*^9, 
+   3.700416184713196*^9}, {3.7004162846749797`*^9, 3.700416299319327*^9}, {
+   3.700416334111731*^9, 3.700416476280868*^9}, {3.7004165584550486`*^9, 
+   3.700416748358946*^9}, {3.7004167865409374`*^9, 3.7004168362920713`*^9}, {
+   3.7004168723317003`*^9, 3.700416875443556*^9}, {3.7004169619246492`*^9, 
+   3.7004171508029766`*^9}, {3.7004172982735186`*^9, 
+   3.7004173594950857`*^9}, {3.7004173907754636`*^9, 
+   3.7004174090954733`*^9}, {3.7004174406436787`*^9, 
+   3.7004175066495705`*^9}, {3.7004175620871897`*^9, 3.700417564074155*^9}, {
+   3.7004176266172094`*^9, 3.700417689469734*^9}, 3.700417744138462*^9, {
+   3.7004178466194763`*^9, 3.7004178514387217`*^9}, {3.7004179010233693`*^9, 
+   3.700417969773903*^9}, {3.7004194622684803`*^9, 3.7004194807002754`*^9}, {
+   3.7004195250862417`*^9, 3.700419634529664*^9}, {3.70041973309317*^9, 
+   3.7004197777190857`*^9}, {3.7004199353880634`*^9, 
+   3.7004199856862955`*^9}, {3.700420031883397*^9, 3.7004200384370103`*^9}, {
+   3.7004200768370237`*^9, 3.7004200813635902`*^9}, {3.7005002289511003`*^9, 
+   3.7005002595097337`*^9}, {3.7005003387773895`*^9, 
+   3.7005003928394747`*^9}, {3.7005005433856483`*^9, 3.70050068241066*^9}, {
+   3.7005205711157045`*^9, 3.700520592731146*^9}, {3.700520685306196*^9, 
+   3.7005206872913632`*^9}, {3.700520721963853*^9, 3.70052076743723*^9}, {
+   3.700520821146989*^9, 3.7005209248414264`*^9}, {3.7005210073570595`*^9, 
+   3.700521118023404*^9}, {3.7005211555954556`*^9, 3.700521191865261*^9}, {
+   3.700521248412936*^9, 3.700521253976218*^9}, {3.700521336326907*^9, 
+   3.700521389718092*^9}, {3.7005214243943505`*^9, 3.700521469093422*^9}, {
+   3.7005215068275146`*^9, 3.7005217634440374`*^9}, {3.7005302799117713`*^9, 
+   3.700530404237026*^9}}],
+
+Cell[BoxData[
+ StyleBox["\<\"After evaluate the notebook, the output shows something wrong. \
+But just move the locator, the error will not show again. When the locator \
+moves to the top left part and the bottom rigth part, error message will be \
+shown below. And if you can move the locator exactly on the line, it will \
+show that denominator is zero. I ask you whether the condition is correct if \
+the p in the top right part after class. I think even though it can get a \
+solution of w1 but the condition is not reasonable.\"\>",
+  StripOnInput->False,
+  LineColor->RGBColor[1, 0, 0],
+  FrontFaceColor->RGBColor[1, 0, 0],
+  BackFaceColor->RGBColor[1, 0, 0],
+  GraphicsColor->RGBColor[1, 0, 0],
+  FontSize->18,
+  FontColor->RGBColor[1, 0, 0]]], "Print",
+ CellChangeTimes->{
+  3.7005214008903427`*^9, {3.700521731041318*^9, 3.70052176402841*^9}, 
+   3.700530252863377*^9, 3.7005304131047506`*^9}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`cp$$ = {0.5760000000000001, 
+    0.6699999999999999}, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`cp$$], Automatic}}, Typeset`size$$ = {
+    360., {177., 183.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`cp$$ = Automatic}, 
+      "ControllerVariables" :> {}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`p = 
+        Join[$CellContext`cp$$, {1.}]; $CellContext`v0 = 
+        Part[$CellContext`b2D, 1] - 
+         Part[$CellContext`b2D, 3]; $CellContext`v1 = 
+        Part[$CellContext`b2D, 2] - 
+         Part[$CellContext`b2D, 3]; $CellContext`v2 = $CellContext`p - 
+         Part[$CellContext`b2D, 3]; $CellContext`d00 = 
+        Dot[$CellContext`v0, $CellContext`v0]; $CellContext`d01 = 
+        Dot[$CellContext`v0, $CellContext`v1]; $CellContext`d11 = 
+        Dot[$CellContext`v1, $CellContext`v1]; $CellContext`d20 = 
+        Dot[$CellContext`v2, $CellContext`v0]; $CellContext`d21 = 
+        Dot[$CellContext`v2, $CellContext`v1]; $CellContext`denom = \
+$CellContext`d00 $CellContext`d11 - $CellContext`d01 $CellContext`d01; \
+$CellContext`\[Tau]0 = ($CellContext`d11 $CellContext`d20 - $CellContext`d01 \
+$CellContext`d21)/$CellContext`denom; $CellContext`\[Tau]1 = \
+($CellContext`d00 $CellContext`d21 - $CellContext`d01 \
+$CellContext`d20)/$CellContext`denom; $CellContext`\[Tau]2 = 
+        1. - $CellContext`\[Tau]0 - $CellContext`\[Tau]1; If[
+         Or[
+          And[$CellContext`\[Tau]0 < 0, $CellContext`\[Tau]2 > 0], 
+          And[$CellContext`\[Tau]0 > 0, $CellContext`\[Tau]2 < 0]], 
+         Print["Dominator is negative"], 
+         If[
+          Or[$CellContext`\[Tau]0 == 0, $CellContext`\[Tau]2 == 0], 
+          Print["Dominator is zero"]]]; 
+       Part[$CellContext`wts, 2] = $CellContext`\[Tau]1/(2 
+         Sqrt[$CellContext`\[Tau]0 $CellContext`\[Tau]2]); $CellContext`b3D = \
+($CellContext`b2D = {{1, 0, 1}, {1, 1, 1}, {0, 1, 1}}); $CellContext`b2d = {{
+         1, 0}, {1, 1}, {0, 1}}; 
+       Do[Part[$CellContext`b3D, $CellContext`i] = 
+         Part[$CellContext`b2D, $CellContext`i] 
+          Part[$CellContext`wts, $CellContext`i], {$CellContext`i, 1, 
+          3}]; $CellContext`wtpts1 = (Part[$CellContext`b2D, 1] + 
+          Part[$CellContext`wts, 2] Part[$CellContext`b2D, 2])/(1. + 
+         Part[$CellContext`wts, 2]); $CellContext`wtpts2 = (
+          Part[$CellContext`b2D, 3] + 
+          Part[$CellContext`wts, 2] Part[$CellContext`b2D, 2])/(1. + 
+         Part[$CellContext`wts, 2]); $CellContext`wtpts12d = {
+          Part[$CellContext`wtpts1, 1], 
+          Part[$CellContext`wtpts1, 2]}; $CellContext`wtpts22d = {
+          Part[$CellContext`wtpts2, 1], 
+          Part[$CellContext`wtpts2, 2]}; $CellContext`l1 = 
+        Graphics[{Red, Dashed, 
+           InfiniteLine[{
+             Part[$CellContext`b2d, 1], 
+             Part[$CellContext`b2d, 2]}]}]; $CellContext`l2 = 
+        Graphics[{Red, Dashed, 
+           InfiniteLine[{
+             Part[$CellContext`b2d, 2], 
+             Part[$CellContext`b2d, 3]}]}]; $CellContext`curve2D = 
+        ParametricPlot[
+          $CellContext`ratquadraticBez[$CellContext`b3D, $CellContext`t], \
+{$CellContext`t, 0, 1}, PlotStyle -> {Thick, Green}]; $CellContext`polygon2D = 
+        Graphics[{Thick, 
+           Line[$CellContext`b2d]}]; $CellContext`points2D = Graphics[{Cyan, 
+           PointSize[Large], 
+           Point[$CellContext`b2d]}]; $CellContext`wtpts = Graphics[{
+           PointSize[Large], 
+           
+           Point[{$CellContext`wtpts12d, $CellContext`wtpts22d}]}]; \
+$CellContext`wtpntLine = Graphics[{Thick, Cyan, 
+           Line[{$CellContext`wtpts12d, $CellContext`wtpts22d}]}]; 
+       Show[{$CellContext`curve2D, $CellContext`polygon2D, \
+$CellContext`points2D, $CellContext`wtpts, $CellContext`wtpntLine, \
+$CellContext`l1, $CellContext`l2}, PlotRange -> {{-1.5, 1.5}, {-1.5, 1.5}}]), 
+      "Specifications" :> {{$CellContext`cp$$, Automatic, ControlType -> 
+         Locator}}, "Options" :> {}, "DefaultOptions" :> {}],
+     ImageSizeCache->{417., {211., 218.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7004168248987527`*^9, 3.700416836890839*^9}, {
+   3.7004170234667425`*^9, 3.700417031756178*^9}, 3.700417106106638*^9, {
+   3.7004171394776936`*^9, 3.7004171518398695`*^9}, 3.7004172895883913`*^9, {
+   3.700417396145306*^9, 3.700417409774516*^9}, 3.700417454326417*^9, 
+   3.700417646938074*^9, 3.7004176899943485`*^9, 3.7004178520895786`*^9, {
+   3.700417924209631*^9, 3.700417970348637*^9}, {3.7004197605748014`*^9, 
+   3.700419787917732*^9}, 3.700419941806858*^9, 3.7004199863343077`*^9, 
+   3.700420039265922*^9, 3.700420082421361*^9, 3.7004204081585617`*^9, 
+   3.700424188762952*^9, 3.7004242435056033`*^9, 3.7004353668676004`*^9, 
+   3.7004354367436824`*^9, 3.700500185772502*^9, 3.7005002601724873`*^9, {
+   3.7005003404710283`*^9, 3.7005003714380455`*^9}, {3.700500651942212*^9, 
+   3.7005006839320765`*^9}, 3.7005204424937935`*^9, 3.7005205556619725`*^9, 
+   3.700521012893281*^9, 3.700521044834885*^9, 3.7005211191232324`*^9, {
+   3.7005212024967685`*^9, 3.7005212583228097`*^9}, 3.7005213289601464`*^9, 
+   3.700521400908366*^9, {3.7005217310503144`*^9, 3.7005217640463934`*^9}, 
+   3.7005302528714037`*^9, 3.7005304131157722`*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304316907234`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304317444153`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304333547153`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304334022245`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304371892023`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304372462406`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304394403954`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.700530439500373*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.7005304444401145`*^9}],
+
+Cell[BoxData["\<\"Dominator is negative\"\>"], "Print",
+ CellChangeTimes->{3.700530444495099*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{1912, Automatic}, {Automatic, 5}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 17964, 448, 1252, "Input"],
+Cell[18547, 472, 902, 17, 104, "Print"],
+Cell[19452, 491, 6193, 111, 446, "Output"],
+Cell[CellGroupData[{
+Cell[25670, 606, 99, 1, 23, "Print"],
+Cell[25772, 609, 99, 1, 23, "Print"],
+Cell[25874, 612, 99, 1, 23, "Print"],
+Cell[25976, 615, 99, 1, 23, "Print"],
+Cell[26078, 618, 99, 1, 23, "Print"],
+Cell[26180, 621, 99, 1, 23, "Print"],
+Cell[26282, 624, 99, 1, 23, "Print"],
+Cell[26384, 627, 97, 1, 23, "Print"],
+Cell[26484, 630, 99, 1, 23, "Print"],
+Cell[26586, 633, 97, 1, 23, "Print"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

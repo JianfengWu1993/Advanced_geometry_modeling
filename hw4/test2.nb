@@ -1,0 +1,451 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16535,        443]
+NotebookOptionsPosition[     16215,        427]
+NotebookOutlinePosition[     16559,        442]
+CellTagsIndexPosition[     16516,        439]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"dpt", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"x", "/", "3"}], ",", 
+       RowBox[{"y", "/", "3"}], ",", 
+       RowBox[{"z", "/", "3"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", "0", ",", "3"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"z", ",", "0", ",", "3"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"datainput1", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<bunny.obj\>\""}], 
+       "}"}], "]"}], ",", "\"\<GraphicsComplex\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"datainput2", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<teapot.obj\>\""}], 
+       "}"}], "]"}], ",", "\"\<GraphicsComplex\>\""}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"datavertex1", " ", "=", 
+   RowBox[{"datainput1", "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"datavertex2", " ", "=", 
+   RowBox[{"datainput2", "[", 
+    RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"datapts1", "=", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"datavertex1", "+", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1.1", ",", "0.2", ",", "0.9"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", 
+          RowBox[{"Length", "[", "datavertex1", "]"}]}], "}"}]}], "]"}]}], 
+     ")"}], "*", "0.8"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"datapts2", "=", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"datavertex2", "+", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0.3", ",", "0.85", ",", "0.2"}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", 
+           RowBox[{"Length", "[", "datavertex2", "]"}]}], "}"}]}], "]"}]}], 
+      ")"}], "*", "0.6"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"voldeform", "[", 
+     RowBox[{"pts_", ",", "d_"}], "]"}], ":=", 
+    RowBox[{"Sum", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"d", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"i", "+", "1"}], ",", 
+          RowBox[{"j", "+", "1"}], ",", 
+          RowBox[{"k", "+", "1"}]}], "]"}], "]"}], "*", 
+       RowBox[{"BernsteinBasis", "[", 
+        RowBox[{"3", ",", "i", ",", 
+         RowBox[{"pts", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], "*", 
+       RowBox[{"BernsteinBasis", "[", 
+        RowBox[{"3", ",", "j", ",", 
+         RowBox[{"pts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "*", 
+       RowBox[{"BernsteinBasis", "[", 
+        RowBox[{"3", ",", "k", ",", 
+         RowBox[{"pts", "[", 
+          RowBox[{"[", "3", "]"}], "]"}]}], "]"}]}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "0", ",", "3"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "0", ",", "3"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"k", ",", "0", ",", "3"}], "}"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{"(*", 
+   RowBox[{"P", " ", "is", " ", "all", " ", "the", " ", "dijk"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"data", "\[Equal]", "1"}], ",", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"datavertex", "=", 
+         RowBox[{"datainput1", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"datapts", "=", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"datavertex", ".", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], "}"}]}], "+", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0.9", ",", "1.1", ",", "0.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{"Length", "[", "datavertex", "]"}]}], "}"}]}], 
+             "]"}]}], ")"}], "*", "0.8"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"dataface", "=", 
+         RowBox[{"datainput1", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+       ")"}], ",", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"datavertex", "=", 
+         RowBox[{"datainput2", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], ";", 
+        RowBox[{"datapts", "=", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"datavertex2", "+", 
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"0.3", ",", "0.85", ",", "0.2"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", 
+                RowBox[{"Length", "[", "datavertex", "]"}]}], "}"}]}], 
+             "]"}]}], ")"}], "*", "0.6"}]}], ";", 
+        RowBox[{"dataface", "=", 
+         RowBox[{"datainput2", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ";"}], ")"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"p", "=", 
+     RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", "4"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"j", "=", "1"}], ",", 
+        RowBox[{"j", "\[LessEqual]", "4"}], ",", 
+        RowBox[{"j", "++"}], ",", 
+        RowBox[{"p", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"p", ",", 
+           RowBox[{"Table", "[", 
+            RowBox[{
+             RowBox[{"dpt", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j", ",", "k"}], "]"}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"k", ",", "1", ",", "4"}], "}"}]}], "]"}]}], "]"}]}]}], 
+       "]"}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"point", "=", " ", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", 
+        RowBox[{"Point", "[", "p", "]"}]}], "}"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"l", "=", 
+     RowBox[{"Join", "[", 
+      RowBox[{
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Line", "[", 
+          RowBox[{"dpt", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "4"}], "}"}]}], "]"}], ",", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Line", "[", 
+          RowBox[{"Transpose", "[", 
+           RowBox[{"dpt", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "1", ",", "4"}], "}"}]}], "]"}], ",", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Line", "[", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"Table", "[", 
+             RowBox[{
+              RowBox[{"dpt", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", "j", ",", "k"}], "]"}], "]"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"i", ",", "1", ",", "4"}], "}"}]}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"j", ",", "1", ",", "4"}], "}"}]}], "]"}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", "1", ",", "4"}], "}"}]}], "]"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"line", "=", 
+     RowBox[{"Graphics3D", "[", 
+      RowBox[{"{", 
+       RowBox[{"Red", ",", "l"}], "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{"deformpts", "=", 
+     RowBox[{"Table", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "datapts", "]"}]}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", 
+       RowBox[{"Length", "[", "datapts", "]"}]}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{
+       RowBox[{"deformpts", "[", 
+        RowBox[{"[", "i", "]"}], "]"}], "=", 
+       RowBox[{"voldeform", "[", 
+        RowBox[{
+         RowBox[{"datapts", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], ",", "dpt"}], "]"}]}]}], "]"}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"mesh", "=", 
+     RowBox[{"MeshRegion", "[", 
+      RowBox[{"deformpts", ",", "dataface"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"mesh", ",", "point", ",", "line"}], "}"}], ",", 
+      RowBox[{"Axes", "->", "True"}], ",", 
+      RowBox[{"AxesLabel", "->", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "y", ",", "z"}], "}"}]}]}], "]"}]}], 
+   "\[IndentingNewLine]", ",", 
+   RowBox[{"{", 
+    RowBox[{"data", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"1", "\[Rule]", "\"\<bunny\>\""}], ",", 
+       RowBox[{"2", "\[Rule]", "\"\<teapot\>\""}]}], "}"}]}], "}"}], ",", 
+   RowBox[{"Initialization", "\[RuleDelayed]", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"datavertex", "=", 
+       RowBox[{"datainput1", "[", 
+        RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"datapts", "=", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"datavertex", ".", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{"0", ",", "1", ",", "0"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"0", ",", "0", ",", "1"}], "}"}], ",", 
+             RowBox[{"{", 
+              RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], "}"}]}], "+", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0.9", ",", "1.1", ",", "0.2"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"Length", "[", "datavertex", "]"}]}], "}"}]}], "]"}]}], 
+         ")"}], "*", "0.8"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"dataface", "=", 
+       RowBox[{"datainput1", "[", 
+        RowBox[{"[", "2", "]"}], "]"}]}], ";"}], ")"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7017377276989803`*^9, 3.701738070532444*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`data$$ = 2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{
+      Hold[$CellContext`data$$], {1 -> "bunny", 2 -> "teapot"}}}, 
+    Typeset`size$$ = {360., {194., 200.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    False, $CellContext`data$126710$$ = False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, "Variables" :> {$CellContext`data$$ = 1 -> "bunny"}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`data$$, $CellContext`data$126710$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> (
+       If[$CellContext`data$$ == 
+         1, $CellContext`datavertex = 
+          Part[$CellContext`datainput1, 1]; $CellContext`datapts = (
+            Dot[$CellContext`datavertex, {{0, 1, 0}, {0, 0, 1}, {1, 0, 0}}] + 
+            Table[{0.9, 1.1, 0.2}, {$CellContext`i, 
+               Length[$CellContext`datavertex]}]) 0.8; $CellContext`dataface = 
+          Part[$CellContext`datainput1, 2]; 
+         Null, $CellContext`datavertex = 
+          Part[$CellContext`datainput2, 
+            1]; $CellContext`datapts = ($CellContext`datavertex2 + 
+            Table[{0.3, 0.85, 0.2}, {$CellContext`i, 
+               Length[$CellContext`datavertex]}]) 0.6; $CellContext`dataface = 
+          Part[$CellContext`datainput2, 2]; Null]; $CellContext`p = {}; 
+       For[$CellContext`i = 1, $CellContext`i <= 4, 
+         Increment[$CellContext`i], 
+         For[$CellContext`j = 1, $CellContext`j <= 4, 
+          Increment[$CellContext`j], $CellContext`p = Join[$CellContext`p, 
+            Table[
+             
+             Part[$CellContext`dpt, $CellContext`i, $CellContext`j, \
+$CellContext`k], {$CellContext`k, 1, 4}]]]]; $CellContext`point = 
+        Graphics3D[{Red, 
+           Point[$CellContext`p]}]; $CellContext`l = Join[
+          Table[
+           Line[
+            Part[$CellContext`dpt, $CellContext`i]], {$CellContext`i, 1, 4}], 
+          Table[
+           Line[
+            Transpose[
+             Part[$CellContext`dpt, $CellContext`i]]], {$CellContext`i, 1, 
+            4}], 
+          Table[
+           Line[
+            Table[
+             Table[
+              
+              Part[$CellContext`dpt, $CellContext`i, $CellContext`j, \
+$CellContext`k], {$CellContext`i, 1, 4}], {$CellContext`j, 1, 
+              4}]], {$CellContext`k, 1, 4}]]; $CellContext`line = 
+        Graphics3D[{Red, $CellContext`l}]; $CellContext`deformpts = 
+        Table[{0, 0, 0}, {$CellContext`i, 
+           Length[$CellContext`datapts]}]; 
+       For[$CellContext`i = 1, $CellContext`i <= Length[$CellContext`datapts], 
+         Increment[$CellContext`i], 
+         Part[$CellContext`deformpts, $CellContext`i] = $CellContext`voldeform[
+           
+           Part[$CellContext`datapts, $CellContext`i], $CellContext`dpt]]; \
+$CellContext`mesh = MeshRegion[$CellContext`deformpts, $CellContext`dataface]; 
+       Show[{$CellContext`mesh, $CellContext`point, $CellContext`line}, Axes -> 
+         True, AxesLabel -> {$CellContext`x, $CellContext`y, \
+$CellContext`z}]), 
+      "Specifications" :> {{$CellContext`data$$, {
+         1 -> "bunny", 2 -> "teapot"}}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {238., 245.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    Initialization:>(($CellContext`datavertex = 
+       Part[$CellContext`datainput1, 1]; $CellContext`datapts = (
+         Dot[$CellContext`datavertex, {{0, 1, 0}, {0, 0, 1}, {1, 0, 0}}] + 
+         Table[{0.9, 1.1, 0.2}, {$CellContext`i, 
+            Length[$CellContext`datavertex]}]) 0.8; $CellContext`dataface = 
+       Part[$CellContext`datainput1, 2]; Null); Typeset`initDone$$ = True),
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.701737704846354*^9, 3.701738006752084*^9}, {
+  3.7017380397074895`*^9, 3.701738073176793*^9}}]
+}, Open  ]]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 11034, 307, 672, "Input"],
+Cell[11617, 331, 4582, 93, 533, "Output"]
+}, Open  ]]
+}
+]
+*)
+

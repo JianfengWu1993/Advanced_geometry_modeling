@@ -1,0 +1,450 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.4' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17092,        440]
+NotebookOptionsPosition[     16429,        414]
+NotebookOutlinePosition[     16773,        429]
+CellTagsIndexPosition[     16730,        426]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    StyleBox["bezierpts",
+     FontSize->18], 
+    StyleBox[" ",
+     FontSize->18], 
+    StyleBox["=",
+     FontSize->18], 
+    StyleBox[" ",
+     FontSize->18], 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0", ",", " ", "1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1", ",", "1"}], "}"}], ",", " ", 
+      RowBox[{"{", 
+       RowBox[{"1.5", ",", "0.5", ",", " ", "1"}], "}"}]}], "}"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Choose", " ", "param1", " ", "and", " ", "param2", " ", 
+    RowBox[{"in", " ", "[", 
+     RowBox[{"0", ",", "1"}], "]"}]}], " ", "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"param1", " ", "=", " ", "0.2"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"param2", " ", "=", " ", "0.3"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "\"\<Given data:\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", 
+   RowBox[{"\"\<    Bezier points (rows) = \>\"", ",", 
+    RowBox[{"MatrixForm", "[", "bezierpts", "]"}], ",", 
+    "\"\< and w_0 = w_2 = 1\>\""}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "\"\<    Tangent (red line)\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "\"\<Computed: weight w_1 \>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Print", "[", "\"\<    q_0  and q_1 (cyan line)\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", "\"\<Param1 and Param2 move the given tangent\>\"", "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", "\"\<This demonstrates the Four Tangent Theorem: \>\"", "]"}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "Print", "[", 
+    "\"\<  The cross ratio of the intersection of four tangents are \
+equal\>\"", "]"}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"(", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"b10", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1.0", " ", "-", " ", "param1"}], ")"}], "*", 
+        RowBox[{"bezierpts", "[", 
+         RowBox[{"[", "1", "]"}], "]"}]}], " ", "+", " ", 
+       RowBox[{"param1", "*", 
+        RowBox[{"bezierpts", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"b11", " ", "=", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1.0", " ", "-", " ", "param2"}], ")"}], "*", 
+        RowBox[{"bezierpts", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], " ", "+", " ", 
+       RowBox[{"param2", "*", 
+        RowBox[{"bezierpts", "[", 
+         RowBox[{"[", "3", "]"}], "]"}]}]}]}], ";", "\[IndentingNewLine]", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ratio1", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"EuclideanDistance", "[", 
+        RowBox[{"b10", ",", 
+         RowBox[{"bezierpts", "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}], "/", 
+       RowBox[{"EuclideanDistance", "[", 
+        RowBox[{
+         RowBox[{"bezierpts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}], ",", "b10"}], "]"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ratio2", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"EuclideanDistance", "[", 
+        RowBox[{"b11", ",", 
+         RowBox[{"bezierpts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "/", 
+       RowBox[{"EuclideanDistance", "[", 
+        RowBox[{
+         RowBox[{"bezierpts", "[", 
+          RowBox[{"[", "3", "]"}], "]"}], ",", "b11"}], "]"}]}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"bezierwts", " ", "=", " ", 
+      RowBox[{"{", 
+       RowBox[{"1.0", ",", " ", "1.0", ",", " ", "1.0"}], "}"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"bezierwts", "[", 
+       RowBox[{"[", "2", "]"}], "]"}], " ", "=", " ", 
+      RowBox[{"Sqrt", "[", 
+       RowBox[{"ratio1", "/", "ratio2"}], "]"}]}], ";", "\[IndentingNewLine]",
+      "\[IndentingNewLine]", 
+     RowBox[{"wtpnt1", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"bezierpts", "[", 
+          RowBox[{"[", "1", "]"}], "]"}], " ", "+", " ", 
+         RowBox[{
+          RowBox[{"bezierwts", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], " ", "*", 
+          RowBox[{"bezierpts", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}]}], " ", ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"1.0", " ", "+", " ", 
+         RowBox[{"bezierwts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], " ", ")"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"wtpnt2", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"bezierpts", "[", 
+          RowBox[{"[", "3", "]"}], "]"}], " ", "+", " ", 
+         RowBox[{
+          RowBox[{"bezierwts", "[", 
+           RowBox[{"[", "2", "]"}], "]"}], " ", "*", 
+          RowBox[{"bezierpts", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}]}], " ", ")"}], "/", 
+       RowBox[{"(", 
+        RowBox[{"1.0", " ", "+", " ", 
+         RowBox[{"bezierwts", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], " ", ")"}]}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Print", "[", "\"\<Given data:\>\"", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<    Bezier points (rows) = \>\"", ",", 
+         RowBox[{"MatrixForm", "[", "bezierpts", "]"}], ",", 
+         "\"\< and w_0 = w_2 = 1\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "\"\<    Tangent (red line)\>\"", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", "\"\<Computed: \>\"", "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"\"\<    w_1 thus weights= \>\"", ",", "bezierwts"}], "]"}], 
+       ";", "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{
+        "\"\<    q_0 = \>\"", ",", "wtpnt1", ",", "\"\<  q_1 = \>\"", ",", 
+         "wtpnt2"}], "]"}], ";"}], "\[IndentingNewLine]", "*)"}], 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{"Draw", " ", "it", " ", "all"}], " ", "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{"bezcurve2", " ", "=", " ", 
+      RowBox[{"ParametricPlot3D", "[", 
+       RowBox[{
+        RowBox[{"ratdecas", "[", 
+         RowBox[{"bezierpts", ",", " ", "bezierwts", ",", "t"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "1"}], "}"}], ",", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"Thick", ",", " ", "Green"}], "}"}]}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"bezpolygon2", " ", "=", " ", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"Thick", ",", 
+         RowBox[{"Line", "[", "bezierpts", "]"}]}], "}"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"bezpoints2", " ", "=", " ", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"PointSize", "[", "Large", "]"}], ",", 
+         RowBox[{"Point", "[", "bezierpts", "]"}]}], "}"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"tangLine", " ", "=", " ", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"Thick", ",", "Red", ",", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{"b10", ",", " ", "b11"}], "}"}], "]"}]}], "}"}], "]"}]}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"wtpnt1Plot", " ", "=", " ", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"Cyan", ",", 
+         RowBox[{"PointSize", "[", "psize", "]"}], ",", 
+         RowBox[{"Point", "[", "wtpnt1", "]"}]}], "}"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"wtpnt2Plot", " ", "=", " ", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"Cyan", ",", 
+         RowBox[{"PointSize", "[", "psize", "]"}], ",", 
+         RowBox[{"Point", "[", "wtpnt2", "]"}]}], "}"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"wtpntLine", " ", "=", " ", 
+      RowBox[{"Graphics3D", "[", 
+       RowBox[{"{", 
+        RowBox[{"Thick", ",", "Cyan", ",", 
+         RowBox[{"Line", "[", 
+          RowBox[{"{", 
+           RowBox[{"wtpnt1", ",", " ", "wtpnt2"}], "}"}], "]"}]}], "}"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"Show", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "bezcurve2", ",", "bezpolygon2", ",", "bezpoints2", ",", " ", 
+         "wtpnt1Plot", ",", " ", "wtpnt2Plot", ",", " ", "wtpntLine", ",", 
+         " ", "tangLine"}], "}"}], ",", " ", 
+       RowBox[{"Axes", "->", "False"}], ",", " ", 
+       RowBox[{"Boxed", "\[Rule]", "False"}], ",", " ", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}], ",", " ", 
+       RowBox[{"ViewPoint", "\[Rule]", "Top"}]}], "]"}]}], 
+    "\[IndentingNewLine]", ")"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"param1", ",", " ", "0.5"}], "}"}], ",", "0.01", ",", " ", 
+     "0.99"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"param2", ",", "0.5"}], "}"}], ",", " ", "0.01", ",", " ", 
+     "0.99"}], "}"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{" "}]}], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Given data:\"\>"], "Print",
+ CellChangeTimes->{3.7004043656989756`*^9}],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"    Bezier points (rows) = \"\>", "\[InvisibleSpace]", 
+   TagBox[
+    RowBox[{"(", "\[NoBreak]", GridBox[{
+       {"0", "0", "1"},
+       {"1", "1", "1"},
+       {"1.5`", "0.5`", "1"}
+      },
+      GridBoxAlignment->{
+       "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, 
+        "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.7]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+    Function[BoxForm`e$, 
+     MatrixForm[BoxForm`e$]]], 
+   "\[InvisibleSpace]", "\<\" and w_0 = w_2 = 1\"\>"}],
+  SequenceForm["    Bezier points (rows) = ", 
+   MatrixForm[{{0, 0, 1}, {1, 1, 1}, {1.5, 0.5, 1}}], " and w_0 = w_2 = 1"],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.700404365699994*^9}],
+
+Cell[BoxData["\<\"    Tangent (red line)\"\>"], "Print",
+ CellChangeTimes->{3.700404365705998*^9}],
+
+Cell[BoxData["\<\"Computed: weight w_1 \"\>"], "Print",
+ CellChangeTimes->{3.700404365705998*^9}],
+
+Cell[BoxData["\<\"    q_0  and q_1 (cyan line)\"\>"], "Print",
+ CellChangeTimes->{3.700404365707966*^9}],
+
+Cell[BoxData["\<\"Param1 and Param2 move the given tangent\"\>"], "Print",
+ CellChangeTimes->{3.7004043657099705`*^9}],
+
+Cell[BoxData["\<\"This demonstrates the Four Tangent Theorem: \"\>"], "Print",
+ CellChangeTimes->{3.700404365710998*^9}],
+
+Cell[BoxData["\<\"  The cross ratio of the intersection of four tangents are \
+equal\"\>"], "Print",
+ CellChangeTimes->{3.700404365711993*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`param1$$ = 0.5, $CellContext`param2$$ = 0.5,
+     Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`param1$$], 0.5}, 0.01, 0.99}, {{
+       Hold[$CellContext`param2$$], 0.5}, 0.01, 0.99}}, Typeset`size$$ = {
+    360., {117., 123.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`param1$3568$$ = 
+    0, $CellContext`param2$3569$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`param1$$ = 0.5, $CellContext`param2$$ = 
+        0.5}, "ControllerVariables" :> {
+        Hold[$CellContext`param1$$, $CellContext`param1$3568$$, 0], 
+        Hold[$CellContext`param2$$, $CellContext`param2$3569$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`b10 = (1. - $CellContext`param1$$) 
+          Part[$CellContext`bezierpts, 1] + $CellContext`param1$$ 
+          Part[$CellContext`bezierpts, 2]; $CellContext`b11 = (
+           1. - $CellContext`param2$$) 
+          Part[$CellContext`bezierpts, 2] + $CellContext`param2$$ 
+          Part[$CellContext`bezierpts, 3]; $CellContext`ratio1 = 
+        EuclideanDistance[$CellContext`b10, 
+           Part[$CellContext`bezierpts, 1]]/EuclideanDistance[
+          
+          Part[$CellContext`bezierpts, 
+           2], $CellContext`b10]; $CellContext`ratio2 = 
+        EuclideanDistance[$CellContext`b11, 
+           Part[$CellContext`bezierpts, 2]]/EuclideanDistance[
+          
+          Part[$CellContext`bezierpts, 
+           3], $CellContext`b11]; $CellContext`bezierwts = {1., 1., 1.}; 
+       Part[$CellContext`bezierwts, 2] = 
+        Sqrt[$CellContext`ratio1/$CellContext`ratio2]; $CellContext`wtpnt1 = (
+          Part[$CellContext`bezierpts, 1] + 
+          Part[$CellContext`bezierwts, 2] Part[$CellContext`bezierpts, 2])/(
+         1. + Part[$CellContext`bezierwts, 2]); $CellContext`wtpnt2 = (
+          Part[$CellContext`bezierpts, 3] + 
+          Part[$CellContext`bezierwts, 2] Part[$CellContext`bezierpts, 2])/(
+         1. + Part[$CellContext`bezierwts, 2]); $CellContext`bezcurve2 = 
+        ParametricPlot3D[
+          $CellContext`ratdecas[$CellContext`bezierpts, \
+$CellContext`bezierwts, $CellContext`t], {$CellContext`t, 0, 1}, 
+          PlotStyle -> {Thick, Green}]; $CellContext`bezpolygon2 = 
+        Graphics3D[{Thick, 
+           Line[$CellContext`bezierpts]}]; $CellContext`bezpoints2 = 
+        Graphics3D[{
+           PointSize[Large], 
+           Point[$CellContext`bezierpts]}]; $CellContext`tangLine = 
+        Graphics3D[{Thick, Red, 
+           
+           Line[{$CellContext`b10, $CellContext`b11}]}]; \
+$CellContext`wtpnt1Plot = Graphics3D[{Cyan, 
+           PointSize[$CellContext`psize], 
+           Point[$CellContext`wtpnt1]}]; $CellContext`wtpnt2Plot = 
+        Graphics3D[{Cyan, 
+           PointSize[$CellContext`psize], 
+           Point[$CellContext`wtpnt2]}]; $CellContext`wtpntLine = 
+        Graphics3D[{Thick, Cyan, 
+           Line[{$CellContext`wtpnt1, $CellContext`wtpnt2}]}]; 
+       Show[{$CellContext`bezcurve2, $CellContext`bezpolygon2, \
+$CellContext`bezpoints2, $CellContext`wtpnt1Plot, $CellContext`wtpnt2Plot, \
+$CellContext`wtpntLine, $CellContext`tangLine}, Axes -> False, Boxed -> False,
+          PlotRange -> All, ViewPoint -> Top]), 
+      "Specifications" :> {{{$CellContext`param1$$, 0.5}, 0.01, 
+         0.99}, {{$CellContext`param2$$, 0.5}, 0.01, 0.99}}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{411., {177., 184.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{3.700404365718994*^9}]
+}, Open  ]]
+},
+WindowSize->{775, 872},
+WindowMargins->{{564, Automatic}, {Automatic, 54}},
+FrontEndVersion->"10.4 for Microsoft Windows (64-bit) (April 11, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 9617, 250, 1192, "Input"],
+Cell[CellGroupData[{
+Cell[10222, 276, 89, 1, 23, "Print"],
+Cell[10314, 279, 992, 25, 50, "Print"],
+Cell[11309, 306, 98, 1, 23, "Print"],
+Cell[11410, 309, 97, 1, 23, "Print"],
+Cell[11510, 312, 104, 1, 23, "Print"],
+Cell[11617, 315, 118, 1, 23, "Print"],
+Cell[11738, 318, 120, 1, 23, "Print"],
+Cell[11861, 321, 142, 2, 23, "Print"]
+}, Open  ]],
+Cell[12018, 326, 4395, 85, 378, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
